@@ -186,10 +186,10 @@ class BinarySearchTree {
       if (node.right) {
         queue.enqueue(node.right); // Add the right child to the queue
       }
-      node = queue.dequeue();
+      node = queue.dequeue(); // Set next node = the next dequeue value
     }
 
-    return values;
+    return values; // return values 
   }
 }
 
