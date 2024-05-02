@@ -142,14 +142,49 @@ dfsInOrder(values = []) {
   return values; 
 }
 
+dfsPreOrder(values = []) {
+  // First handle current node
+  values.push(this.value);
+
+  // Handle left tree
+  if (this.left) {
+    values = this.left.dfsPreOrder(values); 
+  }
+
+  // Handle right tree
+  if (this.right) {
+    values = this.right.dfsPreOrder(values);
+  }
+  return values; 
+}
+
+dfsPostOrder(values = []) {
+  // Handle left tree
+  if (this.left) {
+    values = this.left.dfsPostOrder(values);
+  }
+  // Handle right tree
+  if (this.right) {
+    values = this.right.dfsPostOrder(values);
+  }
+  // Handle current node
+  values.push(this.value);
+  return values;
+} 
 }
 
 // Test cases
 
 const bst = new BinarySearchTree(5, 5);
 
-bst.insert(18, 18);
-bst.insert(12, 12);
-bst.insert(27, 27);
+bst.insert(2, 2);
+bst.insert(20, 20);
+bst.insert(1, 1)
+bst.insert(4, 4);
+bst.insert(15, 15)
+bst.insert(21, 21);
+bst.insert(10, 10);
+bst.insert(17, 17);
+bst.insert(25, 25);
 
-console.log(bst.dfsInOrder());
+console.log(bst.dfsPostOrder());
