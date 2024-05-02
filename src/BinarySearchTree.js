@@ -128,69 +128,69 @@ class BinarySearchTree {
     return this.left._findMin();
   }
 
-dfsInOrder(values = []) {
-  // First process left node recursively
-  if (this.left) {
-    values = this.left.dfsInOrder(values);
-  }
-  // Then handle current node
-  values.push(this.value);
-  // Finally process right node recursively
-  if (this.right) {
-    values = this.right.dfsInOrder(values);
-  }
-  return values; 
-}
-
-dfsPreOrder(values = []) {
-  // First handle current node
-  values.push(this.value);
-
-  // Handle left tree
-  if (this.left) {
-    values = this.left.dfsPreOrder(values); 
+  dfsInOrder(values = []) {
+    // First process left node recursively
+    if (this.left) {
+      values = this.left.dfsInOrder(values);
+    }
+    // Then handle current node
+    values.push(this.value);
+    // Finally process right node recursively
+    if (this.right) {
+      values = this.right.dfsInOrder(values);
+    }
+    return values;
   }
 
-  // Handle right tree
-  if (this.right) {
-    values = this.right.dfsPreOrder(values);
-  }
-  return values; 
-}
+  dfsPreOrder(values = []) {
+    // First handle current node
+    values.push(this.value);
 
-dfsPostOrder(values = []) {
-  // Handle left tree
-  if (this.left) {
-    values = this.left.dfsPostOrder(values);
-  }
-  // Handle right tree
-  if (this.right) {
-    values = this.right.dfsPostOrder(values);
-  }
-  // Handle current node
-  values.push(this.value);
-  return values;
-} 
-
-bfs(tree, values = []) {
-  const queue = new Queue();
-  queue.enqueue(tree); // Start the traversal at the tree and add the tree node to the queue to kick off the BFS
-  let node = queue.dequeue(); // Remove from the queue
-  while (node) {
-    values.push(node.value); // Add that value from the queue to an array
-
-    if (node.left) {
-      queue.enqueue(node.left); // Add the left child to the queue
+    // Handle left tree
+    if (this.left) {
+      values = this.left.dfsPreOrder(values);
     }
 
-    if (node.right) {
-      queue.enqueue(node.right); // Add the right child to the queue
+    // Handle right tree
+    if (this.right) {
+      values = this.right.dfsPreOrder(values);
     }
-    node = queue.dequeue();
+    return values;
   }
 
-  return values;
-}
+  dfsPostOrder(values = []) {
+    // Handle left tree
+    if (this.left) {
+      values = this.left.dfsPostOrder(values);
+    }
+    // Handle right tree
+    if (this.right) {
+      values = this.right.dfsPostOrder(values);
+    }
+    // Handle current node
+    values.push(this.value);
+    return values;
+  }
+
+  bfs(tree, values = []) {
+    const queue = new Queue();
+    queue.enqueue(tree); // Start the traversal at the tree and add the tree node to the queue to kick off the BFS
+    let node = queue.dequeue(); // Remove from the queue
+    while (node) {
+      values.push(node.value); // Add that value from the queue to an array
+
+      if (node.left) {
+        queue.enqueue(node.left); // Add the left child to the queue
+      }
+
+      if (node.right) {
+        queue.enqueue(node.right); // Add the right child to the queue
+      }
+      node = queue.dequeue();
+    }
+
+    return values;
+  }
 }
 
 // Test cases
@@ -199,9 +199,9 @@ const bst = new BinarySearchTree(5, 5);
 
 bst.insert(2, 2);
 bst.insert(20, 20);
-bst.insert(1, 1)
+bst.insert(1, 1);
 bst.insert(4, 4);
-bst.insert(15, 15)
+bst.insert(15, 15);
 bst.insert(21, 21);
 bst.insert(10, 10);
 bst.insert(17, 17);
