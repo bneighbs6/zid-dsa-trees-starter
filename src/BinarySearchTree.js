@@ -127,11 +127,29 @@ class BinarySearchTree {
     }
     return this.left._findMin();
   }
+
+dfsInOrder(values = []) {
+  // First process left node recursively
+  if (this.left) {
+    values = this.left.dfsInOrder(values);
+  }
+  // Then handle current node
+  values.push(this.value);
+  // Finally process right node recursively
+  if (this.right) {
+    values = this.right.dfsInOrder(values);
+  }
+  return values; 
 }
 
-const bst = new BinarySearchTree();
+}
 
-bst.insert(18);
-bst.insert(12);
-bst.insert(27);
-console.log(bst);
+// Test cases
+
+const bst = new BinarySearchTree(5, 5);
+
+bst.insert(18, 18);
+bst.insert(12, 12);
+bst.insert(27, 27);
+
+console.log(bst.dfsInOrder());
