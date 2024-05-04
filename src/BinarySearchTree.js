@@ -1,3 +1,5 @@
+const Queue = require("./Queue");
+
 class BinarySearchTree {
   constructor(key = null, value = null, parent = null) {
     this.key = key;
@@ -191,6 +193,38 @@ class BinarySearchTree {
 
     return values; // return values 
   }
+
+  getHeight(currentHeight = 0) {
+    // BASE CASE: 
+    // If current node doesn't have left or right child,
+    // base case is reach, function can return the height
+    if (!this.left && !this.right) {
+      return currentHeight; 
+    }
+    // RECURSIVE CASE: 
+    // Otherwise (else) compute the new height
+    const newHeight = currentHeight + 1; 
+
+    // If no left child, recurse down the right subtree only
+    if (!this.left) {
+      return this.right.getHeight(newHeight);
+    }
+
+    // If no right child, recurse down the left subtree only
+    if (!this.right) {
+      return this.left.getHeight(newHeight);
+    }
+
+    // If both children exist, recurse down both subtrees,
+    // passing down the height of the current node
+    if (this.left && this.right) {
+      const leftHeight = this.left.getHeight(newHeight);
+      const rightHeight = this.right.getHeight(newHeight);
+    }
+    
+    // Return the greater of left/right subtrees
+    return Math.max(leftHeight, rightHeight);
+  }
 }
 
 // Test cases
@@ -198,13 +232,9 @@ class BinarySearchTree {
 const bst = new BinarySearchTree(5, 5);
 
 bst.insert(2, 2);
-bst.insert(20, 20);
-bst.insert(1, 1);
-bst.insert(4, 4);
+bst.insert(19, 19);
 bst.insert(15, 15);
-bst.insert(21, 21);
-bst.insert(10, 10);
-bst.insert(17, 17);
-bst.insert(25, 25);
+bst.insert(28, 28);
+bst.insert(18, 18);
 
-console.log(bst.dfsPostOrder());
+console.log(bst.bfs(bst));
