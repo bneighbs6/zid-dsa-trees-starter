@@ -225,6 +225,23 @@ class BinarySearchTree {
     // Return the greater of left/right subtrees
     return Math.max(leftHeight, rightHeight);
   }
+
+  isBST() {
+    // Use an dfsInOrder() method and assign to a variable
+    const values = this.dfsInOrder();
+    // Loop thru values array
+    for (let i = 1; i < values.length; i++) {
+    // Check if current value is less than the previous value; 
+      if (values[i] < values[i - 1]) {
+      // Return false if current value is less than previous value
+        return false; 
+      } else {
+      // Otherwise return true
+        return true; 
+      }
+    }
+  }
+
 }
 
 // Test cases
@@ -237,4 +254,4 @@ bst.insert(15, 15);
 bst.insert(28, 28);
 bst.insert(18, 18);
 
-console.log(bst.bfs(bst));
+console.log(bst.isBST());
