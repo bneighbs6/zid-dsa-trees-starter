@@ -242,6 +242,18 @@ class BinarySearchTree {
     }
   }
 
+  findKthLargestNode(k) {
+    const values = this.dfsInOrder();
+    let kthIndex = values.length - k; 
+
+    if (kthIndex >= 0) {
+      return values[kthIndex];
+    } else {
+      console.error("k value exceeds the size of the BST");
+    }
+  }
+
+
 }
 
 // Test cases
@@ -254,4 +266,5 @@ bst.insert(15, 15);
 bst.insert(28, 28);
 bst.insert(18, 18);
 
-console.log(bst.isBST());
+console.log(bst.findKthLargestNode(3));
+console.log(bst.findKthLargestNode(4));
