@@ -48,27 +48,18 @@ class BinarySearchTree {
 } 
 
   find(key) {
-    // If the item is found at the root, then return that value.
-    if (this.key == key) {
-      return this.value;
+    // If tthis.key = key return this.value; 
+    // else if key < this.key && this.left exists => recursively call find on this.left
+    // else if key > this.key && this.right exists => recursivley call find ont his.right
+    // else throw new error
+    if (key == this.key) {
+      return this.value; 
     } else if (key < this.key && this.left) {
-      /* If the item that you are looking for is less than the root,
-           then follow the left child.
-           If there is an existing left child,
-           then recursively check its left and/or right child
-           until you find the item. */
       return this.left.find(key);
     } else if (key > this.key && this.right) {
-      /* If the item that you are looking for is greater than the root,
-           then follow the right child.
-           If there is an existing right child,
-           then recursively check its left and/or right child
-           until you find the item. */
       return this.right.find(key);
-    }
-    // You have searched the tree, and the item isn't in the tree.
-    else {
-      throw new Error("No key heeeeeerrrrreee");
+    } else {
+      throw new Error("Key not found")
     }
   }
 
@@ -271,5 +262,5 @@ bst.insert(15, 15);
 bst.insert(28, 28);
 bst.insert(18, 18);
 
-console.log(bst.findKthLargestNode(3));
+console.log(bst.find(2));
 console.log(bst.findKthLargestNode(4));
