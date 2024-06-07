@@ -171,23 +171,20 @@ class BinarySearchTree {
   }
 
   bfs(tree, values = []) {
-    const queue = new Queue();
-    queue.enqueue(tree); // Start the traversal at the tree and add the tree node to the queue to kick off the BFS
-    let node = queue.dequeue(); // Remove from the queue
-    while (node) {
-      values.push(node.value); // Add that value from the queue to an array
-
-      if (node.left) {
-        queue.enqueue(node.left); // Add the left child to the queue
+    const queue = new Queue(); 
+    queue.enqueue(tree); // Add tree to the queue to kick off BFS
+    let node = queue.dequeue(); // Remove first value from the queue; 
+    while (node) { // While node exists
+      values.push(node.value); // Add node value to array
+      if (node.left) { // Handle left children of node
+        queue.enqueue(node.left); // Add to values array if left children exist
       }
-
-      if (node.right) {
-        queue.enqueue(node.right); // Add the right child to the queue
+      if (node.right) { // Handle right children of node
+        queue.enqueue(node.right); // Add to values array if right children exist
       }
-      node = queue.dequeue(); // Set next node = the next dequeue value
+      node = queue.dequeue(); // Set the value of node equal to the next value in the queue
     }
-
-    return values; // return values 
+    return values; // Return values when node no longer exists or is null; 
   }
 
   getHeight(currentHeight = 0) {
@@ -203,7 +200,7 @@ class BinarySearchTree {
 
     // If no left child, recurse down the right subtree only
     if (!this.left) {
-      return this.right.getHeight(newHeight);
+     return this.right.getHeight(newHeight);
     }
 
     // If no right child, recurse down the left subtree only
@@ -213,10 +210,8 @@ class BinarySearchTree {
 
     // If both children exist, recurse down both subtrees,
     // passing down the height of the current node
-    if (this.left && this.right) {
-      const leftHeight = this.left.getHeight(newHeight);
-      const rightHeight = this.right.getHeight(newHeight);
-    }
+    const leftHeight = this.left.getHeight(newHeight);
+    const rightHeight = this.right.getHeight(newHeight);
     
     // Return the greater of left/right subtrees
     return Math.max(leftHeight, rightHeight);
@@ -262,5 +257,4 @@ bst.insert(15, 15);
 bst.insert(28, 28);
 bst.insert(18, 18);
 
-console.log(bst.find(2));
-console.log(bst.findKthLargestNode(4));
+console.log(bst.bfs(bst))
